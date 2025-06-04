@@ -132,6 +132,7 @@ impl Board {
             ),
         }
 
+        // Checks for win and Tie
         self.check_win();
 
         if self.game_state != GameState::InProgress {
@@ -225,12 +226,45 @@ impl Board {
         }
     }
 
+    /**
+     * This function will evaluate a board's state for the current player.
+     * This is used to assign a scoring to a move done by the AI but can
+     * also be used to show the game state to the players like in chess.
+     *
+     * Pieces in the center = 3 points for each
+     * 2 in a row in any direction + 2 empty = 10 points for each
+     * 3 in a row in any direction + 1 empty = 100 points for each
+     * 4 in a row = 100000 points
+     */
+    fn evaluate(self, player: Player) -> i32 {
+        let mut score: i32 = 0;
+        let center_score: i32 = 3;
+        let two_in_a_row: i32 = 10;
+        let three_in_a_row: i32 = 100;
+        let four_in_a_row: i32 = 100000;
+
+        // Center Points
+
+        let center_col = COLS / 2;
+        let center_count = self.board[center_col]
+            .iter()
+            .filter(|&&cell| cell == Cell::Player(player))
+            .count();
+
+        score += (center_count as i32) * center_score;
+
+        score
+    }
     pub fn get_game_state(&self) -> &GameState {
         return &self.game_state;
     }
 
     pub fn get_board(&self) -> &Vec<Vec<Cell>> {
         return &self.board;
+    }
+
+    pub fn get_current_player(&self) -> &Player {
+        return &self.current_player;
     }
 }
 
