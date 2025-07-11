@@ -1,4 +1,4 @@
 .vscode
 connect4_core/target
-connect4/target
 connect4_cli/target
+/target

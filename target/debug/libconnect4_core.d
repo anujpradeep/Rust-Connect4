@@ -1,0 +1,1 @@
+D:\Projects\Connect4\target\debug\libconnect4_core.rlib: D:\Projects\Connect4\connect4_core\src\ai.rs D:\Projects\Connect4\connect4_core\src\game.rs D:\Projects\Connect4\connect4_core\src\lib.rs D:\Projects\Connect4\connect4_core\src\player.rs

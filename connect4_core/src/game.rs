@@ -126,10 +126,6 @@ impl Board {
         }
     }
 
-    pub fn new_ai_vs_human(diff: usize) -> Self {
-        Board::new(PlayerType::AI(AI::new(diff)), PlayerType::Human)
-    }
-
     /// Player 1 is Human, Player 2 is AI
     pub fn new_human_vs_ai(diff: usize) -> Self {
         Board::new(PlayerType::Human, PlayerType::AI(AI::new(diff)))
@@ -226,11 +222,22 @@ impl Board {
             } else {
                 let mut input = String::new();
                 println!("Enter your move (Enter a number from 0-6):");
-                io::stdin()
-                    .read_line(&mut input)
-                    .expect("Failed to read input");
-
-                col = input.trim().parse().expect("Please enter a valid number");
+                if io::stdin().read_line(&mut input).is_ok() {
+                    match input.trim().parse::<usize>() {
+                        Ok(entered_col) if entered_col <= 6 => {
+                            // Input is a valid number between 0 and 6
+                            // You can use `col` here
+                            col = entered_col;
+                        }
+                        _ => {
+                            println!("Please enter a valid number between 0 and 6.");
+                            continue;
+                        }
+                    }
+                } else {
+                    println!("Failed to read input.");
+                    continue;
+                }
 
                 if !self.valid_move(col) {
                     continue;

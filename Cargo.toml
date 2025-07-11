@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "connect4_core",
+    "connect4_cli"
+]
