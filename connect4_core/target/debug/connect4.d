@@ -1,0 +1,1 @@
+D:\Projects\Connect4\connect4\target\debug\connect4.exe: D:\Projects\Connect4\connect4\src\ai.rs D:\Projects\Connect4\connect4\src\game.rs D:\Projects\Connect4\connect4\src\main.rs D:\Projects\Connect4\connect4\src\player.rs
